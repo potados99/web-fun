@@ -19,15 +19,20 @@ function drawSphere(ctx, x, y, z, radius) {
     
     /**
      * 주어진 좌표쌍(x, y, z)들과 카메라 위치(x, y, z)를 가지고, 
-     * 카메라 위치로부터 파생된 2차원 평면에 좌표쌍들을 투영한 좌표쌍(x, y)들을 계산하여 반환합니다.
+     * 카메라 위치로부터 파생된 2차원 평면에 좌표쌍들을 투영한 좌표쌍(x, y, size, opacity)들을 계산하여 반환합니다.
+     * 이때 size와 opacity는 다음 기준으로 구합니다:
+     * - size: 가까운 점은 크게 표시합니다.
+     * - opacity: 구 반대쪽 면에 있는 점은 가려져 있기에, low opacity로 표현합니다.
+     * 
      * @param {*} param0 
-     * @returns [(x, y)] 좌표쌍들.
+     * @returns [(x, y, size, opacity)] 좌표쌍들.
      */
     function project2d({points/*xyz*/, cameraPosition/*xyz*/ }) {
         const projectedPoints = [];
     
         // TODO 주어진 카메라 좌표(x, y, z)에서 바라본 구의 좌표들(x, y, z)을 2차원 평면(캔버스)에 투영합니다.
         // 이때 평면은 카메라와 수직이며 카메라와 상수 거리(초점거리?)를 가지는 것으로 합니다.
+        // 모든 points들에 대해, 카메라와 point를 잇는 직선이 2차원 평면을 뚫고 지나가는 지점에 투영됩니다.
 
         return projectedPoints;
     }
